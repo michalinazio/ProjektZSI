@@ -1,6 +1,6 @@
 ##Stos technologiczny
 
-Python
-FastApi
-Uvicorn
-MySql
+Python<br>
+FastApi<br>
+Uvicorn<br>
+MySql<br>
