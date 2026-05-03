@@ -28,3 +28,4 @@ def vote(lizard_id: int):
     db.commit()
     return {"ok": True}
 
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
