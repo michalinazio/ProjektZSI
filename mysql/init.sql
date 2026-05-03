@@ -4,4 +4,4 @@ CREATE TABLE lizards (
     votes INT DEFAULT 0
 );
 
-INSERT INTO lizards (name) VALUES ('Jaszczurka1'), ('Jaszczurka2'), ('Jaszczurka3');
+INSERT INTO lizards (name) VALUES ('Jaszczurka Zwinka'), ('Jaszczurka Zielona'), ('Jaszczurka Żyworodna');
