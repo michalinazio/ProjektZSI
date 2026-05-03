@@ -1,15 +1,35 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        
-        
-        <script src="" async defer></script>
-    </body>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Głosowanie na jaszczurki</title>
+  <style>
+    body { font-family: sans-serif; margin: 80px auto; text-align: center; }
+    button { padding: 12px 24px; margin: 8px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>🦎🇵🇱 Głosuj na twoją ulubioną polską jaszczurkę!🇵🇱🦎</h1>
+  <div id="lizards"></div>
+
+  <script>
+    async function load() {
+      const res = await fetch('/api/lizards');
+      const lizards = await res.json();
+      document.getElementById('lizards').innerHTML = lizards.map(l => `
+        <div>
+          <button onclick="vote(${l.id})">${l.name}</button>
+          <span>${l.votes} głosów</span>
+        </div>
+      `).join('');
+    }
+
+    async function vote(id) {
+      await fetch('/api/vote/' + id, { method: 'POST' });
+      load();
+    }
+
+    load();
+  </script>
+</body>
 </html>
