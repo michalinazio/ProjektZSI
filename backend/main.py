@@ -20,6 +20,11 @@ def get_lizards():
     cursor.execute("SELECT * FROM lizards")
     return cursor.fetchall()
 
-@app.get("/")
-def home():
-    return{"message":"Witaj świecie!"}
+@app.post("/api/vote/{lizard_id}")
+def vote(lizard_id: int):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("UPDATE lizards SET votes = votes + 1 WHERE id = %s", (lizard_id,))
+    db.commit()
+    return {"ok": True}
+
