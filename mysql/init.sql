@@ -1,3 +1,5 @@
+SET NAMES 'utf8mb4';
+
 CREATE TABLE lizards (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
