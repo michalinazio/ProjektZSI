@@ -29,6 +29,18 @@ seed_data()
 def get_lizards(db: Session = Depends(get_db)):
     return crud.get_lizards(db)
 
+@app.get("/api/lizards/{lizard_id}")
+def get_lizard(lizard_id: int, db: Session = Depends(get_db)):
+    return crud.get_lizard(db, lizard_id)
+
+@app.delete("/api/lizards/{lizard_id}")
+def delete(lizard_id: int, db: Session = Depends(get_db)):
+    return crud.delete_lizard(db, lizard_id)
+
+@app.post("/api/lizards/{lizard_id}/reset")
+def reset(lizard_id: int, db: Session = Depends(get_db)):
+    return crud.reset_votes(db, lizard_id)
+
 @app.post("/api/vote/{lizard_id}")
 def vote(lizard_id: int, db: Session = Depends(get_db)):
     return crud.vote_lizard(db, lizard_id)
