@@ -1,32 +1,36 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
-import mysql.connector
-import os
+from sqlalchemy.orm import Session
+
+from database.db import Base, SessionLocal, engine, get_db
+from database.models import Lizard
+import crud
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-def get_db():
-    return mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASS"),
-        database=os.getenv("DB_NAME"),
-        charset="utf8mb4"
-    )
-    
+def seed_data():
+    db = SessionLocal()
+    try:
+        if db.query(Lizard).count() == 0:
+            db.add_all([
+                Lizard(name="Jaszczurka z Warszawy", votes=0),
+                Lizard(name="Smok Wawelski (mini)", votes=0),
+                Lizard(name="Krakowski gekon", votes=0),
+            ])
+            db.commit()
+    finally:
+        db.close()
+
+seed_data()
+
 @app.get("/api/lizards")
-def get_lizards():
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM lizards")
-    return cursor.fetchall()
+def get_lizards(db: Session = Depends(get_db)):
+    return crud.get_lizards(db)
 
 @app.post("/api/vote/{lizard_id}")
-def vote(lizard_id: int):
-    db = get_db()
-    cursor = db.cursor()
-    cursor.execute("UPDATE lizards SET votes = votes + 1 WHERE id = %s", (lizard_id,))
-    db.commit()
-    return {"ok": True}
+def vote(lizard_id: int, db: Session = Depends(get_db)):
+    return crud.vote_lizard(db, lizard_id)
 
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
