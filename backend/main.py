@@ -15,9 +15,9 @@ def seed_data():
     try:
         if db.query(Lizard).count() == 0:
             db.add_all([
-                Lizard(name="Jaszczurka z Warszawy", votes=0),
-                Lizard(name="Smok Wawelski (mini)", votes=0),
-                Lizard(name="Krakowski gekon", votes=0),
+                Lizard(name="Jaszczurka Zwinka", votes=0),
+                Lizard(name="Jaszczurka Zielona", votes=0),
+                Lizard(name="Jaszczurka Żyworodna", votes=0),
             ])
             db.commit()
     finally:
