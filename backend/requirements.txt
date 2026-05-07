@@ -1,3 +1,7 @@
 fastapi
 uvicorn
 mysql-connector-python
+fastapi
+uvicorn[standard]
+sqlalchemy
+python-dotenv
