@@ -2,8 +2,9 @@ from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
-from database.db import Base, SessionLocal, engine, get_db
-from database.models import Lizard
+from backend.orm import Base, Lizard, Species
+from backend.orm import engine, SessionLocal, get_db
+from backend.orm.lizards import Lizard
 import crud
 
 Base.metadata.create_all(bind=engine)

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from database.models import Lizard
+from backend.orm.lizards import Lizard
 
 def get_lizards(db: Session):
     return db.query(Lizard).all()
