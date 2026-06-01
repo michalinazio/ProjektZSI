@@ -5,11 +5,11 @@ from backend.utils.uuid import generate_uuid
 from sqlalchemy import DateTime, Integer
 from sqlalchemy import UUID, Column, String, Text, func
 
-from backend.orm.base import Base
+from backend.infrastructure.orm.base import Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
-class Species(Base):
+class SpeciesModel(Base):
     __tablename__ = "species"
 
     id = Column(String(36), primary_key=True, default=generate_uuid)
@@ -37,4 +37,4 @@ class Species(Base):
     )
 
 
-    lizards = relationship("Lizard", back_populates="species")
+    lizards = relationship("LizardModel", back_populates="species")

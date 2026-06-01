@@ -1,8 +1,5 @@
-from backend.core.db import engine
-from backend.orm.base import Base
-
-import backend.orm.species
-import backend.orm.lizards
+from backend.infrastructure.core.db import engine
+from backend.infrastructure.orm.base import Base
 
 print("Tworzę tabele...")
 

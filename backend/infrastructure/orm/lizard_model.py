@@ -7,9 +7,9 @@ from sqlalchemy import Column, ForeignKey, Integer, String, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
-from backend.orm.base import Base
+from backend.infrastructure.orm.base import Base
 
-class Lizard(Base):
+class LizardModel(Base):
     __tablename__ = "lizards"
 
     id = Column(String(36), primary_key=True, default=generate_uuid)
@@ -28,4 +28,4 @@ class Lizard(Base):
 
     species_id = Column(String(36), ForeignKey("species.id"))
 
-    species = relationship("Species", back_populates="lizards")
+    species = relationship("SpeciesModel", back_populates="lizards")
