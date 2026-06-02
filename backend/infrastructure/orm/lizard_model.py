@@ -14,7 +14,7 @@ class LizardModel(Base):
 
     id = Column(String(36), primary_key=True, default=generate_uuid)
 
-    public_id = Column(Integer, autoincrement=True, unique=True)
+    public_id = Column(Integer, unique=True, nullable=True)
 
 
     name = Column(String(50), nullable=False)

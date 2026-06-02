@@ -1,6 +1,5 @@
-from domain.entities.lizard import Lizard
-from infrastructure.orm.lizard_model import LizardModel
-from infrastructure.mappers.species_mapper import SpeciesMapper
+from backend.domain.entities.lizard import Lizard
+from backend.infrastructure.mappers.species_mapper import SpeciesMapper
 
 
 class LizardMapper:

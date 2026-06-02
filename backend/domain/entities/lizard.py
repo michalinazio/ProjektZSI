@@ -1,6 +1,6 @@
-
 from dataclasses import dataclass
-from domain.entities.species import Species
+from backend.domain.entities.species import Species
+
 
 @dataclass
 class Lizard:
