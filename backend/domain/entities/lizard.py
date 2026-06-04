@@ -9,3 +9,6 @@ class Lizard:
     name: str
     age: int
     species: Species | None
+
+    def __repr__(self) -> str:
+        return f"Lizard(id={self.id}, public_id={self.public_id}, name={self.name}, age={self.age}, species={self.species})"        

@@ -87,3 +87,15 @@ class LizardRepository:
         self.db_session.refresh(lizard_model)
 
         return LizardMapper.to_domain(lizard_model)
+    
+    def get_lizards_by_phrase(self, phrase: str):
+        lizard_models = (
+            self.db_session.query(LizardModel)
+            .filter(LizardModel.name.ilike(f"%{phrase}%"))
+            .all()
+        )
+
+        return [
+            LizardMapper.to_domain(lizard_model)
+            for lizard_model in lizard_models
+        ]

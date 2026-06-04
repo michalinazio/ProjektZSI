@@ -32,3 +32,12 @@ class LizardService:
         if not found_lizard:
             raise NotFoundError("Lizard not found")
         return self.lizard_repository.delete_lizard(lizard_id)
+    
+    def find_lizard_by_name(self, name: str) -> Lizard | None:
+        found_lizard = self.lizard_repository.find_lizard_by_name(name)
+        if not found_lizard:
+            raise NotFoundError("Lizard not found")
+        return found_lizard
+
+    def find_lizards_by_phrase(self, phrase: str) -> list[Lizard]:
+        return self.lizard_repository.get_lizards_by_phrase(phrase)
