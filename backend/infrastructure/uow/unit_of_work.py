@@ -1,4 +1,4 @@
-from backend.infrastructure.core import SessionLocal
+from backend.infrastructure.core.db import SessionLocal
 from backend.infrastructure.repositories.lizard_repositories import LizardRepository
 from backend.infrastructure.repositories.species_repositories import SpeciesRepository
 
