@@ -32,6 +32,7 @@ class SpeciesRepository:
             )
 
         self.db_session.add(species_model)
+        self.db_session.flush()
 
         return SpeciesMapper.to_domain(species_model)
 

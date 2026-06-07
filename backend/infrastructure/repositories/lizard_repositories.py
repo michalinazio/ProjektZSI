@@ -37,7 +37,7 @@ class LizardRepository:
         )
 
         self.db_session.add(lizard_model)
-        self.db_session.refresh(lizard_model)
+        self.db_session.flush()
 
         return LizardMapper.to_domain(lizard_model)
 
@@ -81,7 +81,7 @@ class LizardRepository:
         lizard_model.age = lizard_data.age
         lizard_model.species_id = lizard_data.species_id
 
-        self.db_session.refresh(lizard_model)
+        self.db_session.flush()
 
         return LizardMapper.to_domain(lizard_model)
     
