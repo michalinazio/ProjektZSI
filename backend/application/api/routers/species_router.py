@@ -11,7 +11,7 @@ router = APIRouter(prefix="/species", tags=["Species"])
 
 @router.get("", response_model=list[SpeciesResponse])
 def get_species(uow=Depends(get_uow)):
-    service = SpeciesService(uow.species)
+    service = SpeciesService(uow)
 
     try:
         return service.get_species()
@@ -21,7 +21,7 @@ def get_species(uow=Depends(get_uow)):
     
 @router.get("/{species_id}", response_model=SpeciesResponse)
 def get_species_by_id(species_id: str, uow=Depends(get_uow)):
-    service = SpeciesService(uow.species)
+    service = SpeciesService(uow)
 
     try:
         return service.get_species_by_id(species_id)
@@ -34,7 +34,7 @@ def create_species(
     request: SpeciesCreateRequest,
     uow=Depends(get_uow)
 ):
-    service = SpeciesService(uow.species)
+    service = SpeciesService(uow)
 
     species = service.create_species(request)
 

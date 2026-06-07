@@ -32,8 +32,6 @@ class SpeciesRepository:
             )
 
         self.db_session.add(species_model)
-        self.db_session.commit()
-        self.db_session.refresh(species_model)
 
         return SpeciesMapper.to_domain(species_model)
 
@@ -43,7 +41,6 @@ class SpeciesRepository:
             return False
 
         self.db_session.delete(species_model)
-        self.db_session.commit()
 
         return True
 
