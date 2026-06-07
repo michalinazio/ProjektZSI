@@ -30,5 +30,15 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./backend/static:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+
 volumes:
   db_data:
