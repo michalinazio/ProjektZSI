@@ -1,0 +1,13 @@
+from pydantic import BaseModel
+
+
+class LizardVoteCandidateResponse(BaseModel):
+    id: str
+    lizard_id: str
+    votes_count: int
+
+
+class LizardVoteResponse(BaseModel):
+    id: str
+    title: str
+    candidates: list[LizardVoteCandidateResponse]
